@@ -18,7 +18,7 @@ app.use(express.json());
 
 mongoose.connect(process.env.MONGDB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
 
-// require("./routes/html.js")(app, path);
+require("./routes/html.js")(app, path);
 
 app.listen(PORT, () => { 
     console.log(`App running on port ${PORT}!`);
