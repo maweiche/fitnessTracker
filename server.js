@@ -18,7 +18,12 @@ app.use(express.static("public"));
 require("./routes/html.js")(app, path);
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGDB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGDB_URI || "mongodb://localhost/workout", { 
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+ });
 
 //db Create
 db.Workout.create({ name: "Front Squat" })
@@ -49,7 +54,7 @@ db.Workout.create({ name: "Front Squat" })
                 {_id: req.params.id},
                 {
                     $push: {
-                        exercises: data_id
+                        exercises: data._id
                     },
                     $inc: {
                         totalDuration: data.duration
