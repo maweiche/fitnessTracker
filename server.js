@@ -1,9 +1,9 @@
 //Require Dependecies
 const express = require("express");
-const logger = require("morgan");
 const mongoose = require("mongoose");
+const logger = require("morgan");
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3010;
 const app = express();
 
 //Set up Middleware
@@ -21,7 +21,7 @@ mongoose.connect(process.env.MONGDB_URI || "mongodb://localhost/workout", {
 
 //Require the routes
 app.use(require("./routes/htmlRoutes.js"));
-app.use(require("./routes/api.js"))
+app.use(require("./routes/api.js"));
 
 
 app.listen(PORT, () => { 
