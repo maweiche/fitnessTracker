@@ -37,7 +37,7 @@ const { route } = require("./htmlRoutes");
         console.log("THESE ARE PARAMS:", req.params)
         Workout.findOneAndUpdate(
             req.params.id,
-            { $push: { exercise: req.body } },
+            { $push: { exercises: req.body } },
             { new: true, runValidators: true }
         )
             .then((workout) => {
