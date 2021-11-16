@@ -9,7 +9,7 @@ const { route } = require("./htmlRoutes");
             {
                 $addFields: {
                     totalDuration: {
-                        $sum: '$exercise.duration'
+                        $sum: '$exercises.duration'
                     },
                 },
             },
@@ -34,8 +34,8 @@ const { route } = require("./htmlRoutes");
 
     //PUT Workout==============
     router.put("/api/workouts/:id", (req, res) => {
-        console.log("THESE ARE PARAMS:", req.params)
-        Workout.findOneAndUpdate(
+        console.log("THESE ARE PARAMS:", req.params.id, req.body)
+        Workout.findByIdAndUpdate(
             req.params.id,
             { $push: { exercises: req.body } },
             { new: true, runValidators: true }
@@ -54,7 +54,7 @@ const { route } = require("./htmlRoutes");
             {
                 $addFields: {
                     totalDuration:
-                        { $sum: '$exercise.duration' },
+                        { $sum: '$exercises.duration' },
                     totalWeight:
                         { $sum: '$exercises.weight' }
                 }

@@ -9,7 +9,7 @@ async function initWorkout() {
     const workoutSummary = {
       date: formatDate(lastWorkout.day),
       totalDuration: lastWorkout.totalDuration,
-      numExercise: lastWorkout.exercises.length,
+      numExercises: lastWorkout.exercises.length,
       ...tallyExercises(lastWorkout.exercises)
     };
 
@@ -19,8 +19,8 @@ async function initWorkout() {
   }
 }
 
-function tallyExercises(exercise) {
-  const tallied = exercise.reduce((acc, curr) => {
+function tallyExercises(exercises) {
+  const tallied = exercises.reduce((acc, curr) => {
     if (curr.type === "resistance") {
       acc.totalWeight = (acc.totalWeight || 0) + curr.weight;
       acc.totalSets = (acc.totalSets || 0) + curr.sets;
